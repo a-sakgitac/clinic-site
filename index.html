@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>○○鍼灸院</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+            background: url('/images/bg-clinic.png') center/cover no-repeat fixed;
+            color: #222;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.2);
+            z-index: -1;
+        }
+
+        /* ==========================
+           ヘッダー（PC 左寄せ）
+        ========================== */
+        header {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(4px);
+            padding: 15px 20px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* ← 左寄せ */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+            color: #222;
+            letter-spacing: 2px;
+        }
+
+        /* PCナビ（ロゴの下に左寄せで表示） */
+        nav {
+            margin-top: 10px;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #222;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background: #222;
+            transition: 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ==========================
+           ハンバーガー（スマホ）
+        ========================== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: #222;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* ==========================
+           スマホ用メニュー（header の外）
+        ========================== */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(6px);
+
+            z-index: 9999;
+            padding-top: 80px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            padding: 12px 0;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* スマホ時の表示切替 */
+        @media (max-width: 700px) {
+            nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            header {
+                align-items: flex-start;
+            }
+        }
+
+        /* ==========================
+           ヒーロー
+        ========================== */
+        .hero {
+            height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #222;
+            position: relative;
+            opacity: 0;
+            animation: heroFade 1.5s ease-out forwards;
+        }
+
+        @keyframes heroFade {
+            to { opacity: 1; }
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 70%);
+            animation: glowMove 12s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes glowMove {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.45);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1.2s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h2 {
+            font-size: 28px;
+            margin-bottom: 14px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text h2::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #222;
+            opacity: 0.6;
+        }
+
+        /* ==========================
+           セクション
+        ========================== */
+        section {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            scroll-margin-top: 120px;
+        }
+
+        @media (max-width: 700px) {
+            section {
+                padding: 35px 20px 20px;
+            }
+        }
+
+        h2 {
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+            padding-bottom: 6px;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.55);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            background-image: url('/images/washi.png');
+            background-size: cover;
+            background-blend-mode: lighten;
+        }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .map {
+            width: 100%;
+            height: 40vh; /* PC */
+            background: #ccc;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 700px) {
+            .map {
+                height: 18vh; /* スマホで見切れない */
+            }
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>○○鍼灸院</h1>
+
+    <!-- PCではロゴ下に左寄せで表示 -->
+    <nav>
+        <a href="#home">ホーム</a>
+        <a href="#menu">メニュー</a>
+        <a href="#price">料金</a>
+        <a href="#profile">プロフィール</a>
+        <a href="#access">アクセス</a>
+    </nav>
+
+    <!-- スマホ用ハンバーガー -->
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<!-- スマホ用メニュー（header の外） -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="close-btn" id="closeBtn">×</div>
+
+    <a href="#home">ホーム</a>
+    <a href="#menu">メニュー</a>
+    <a href="#price">料金</a>
+    <a href="#profile">プロフィール</a>
+    <a href="#access">アクセス</a>
+</div>
+
+<!-- ==========================
+     ヒーロー
+========================== -->
+<section class="hero">
+    <div class="hero-text">
+        <h2>心と身体を整える、やさしい鍼灸</h2>
+        <p>慢性的な不調から日々の疲れまで、あなたに寄り添う治療院です。</p>
+    </div>
+</section>
+
+<!-- ==========================
+     ホーム
+========================== -->
+<section id="home">
+    <h2>ホーム</h2>
+    <div class="card">
+        <p>○○鍼灸院は、地域の皆さまの健康と日々の生活を支えるために生まれた治療院です。肩こり・腰痛・頭痛・自律神経の乱れ・冷え性・不眠など、現代人が抱えやすい不調に対して、一人ひとりの体質や生活習慣に合わせた丁寧な施術を行っています。</p>
+
+        <p>当院では、痛みの原因を根本から見つめ、身体のバランスを整えることを大切にしています。「なんとなく調子が悪い」「病院では異常がないと言われたけれどつらい」など、小さなお悩みでもお気軽にご相談ください。</p>
+
+        <p>初めての方でも安心して受けていただけるよう、カウンセリングを丁寧に行い、施術内容やお身体の状態をわかりやすく説明いたします。心と身体がふっと軽くなるような、落ち着いた空間でお待ちしております。</p>
+    </div>
+</section>
+
+<!-- ==========================
+     メニュー
+========================== -->
+<section id="menu">
+    <h2>メニュー</h2>
+    <div class="card">
+        <ul>
+            <li>鍼灸治療（全身）</li>
+            <li>部分治療（肩・腰など）</li>
+            <li>美容鍼</li>
+            <li>お灸治療</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ==========================
+     料金
+========================== -->
+<section id="price">
+    <h2>料金</h2>
+    <div class="card">
+        <p>初診料：3,000円</p>
+        <p>鍼灸治療：5,000円〜</p>
+        <p>美容鍼：6,000円〜</p>
+    </div>
+</section>
+
+<!-- ==========================
+     プロフィール
+========================== -->
+<section id="profile">
+    <h2>プロフィール</h2>
+    <div class="card">
+        <p>院長：山田 太郎　国家資格：はり師・きゅう師</p>
+
+        <p>学生時代から「人の役に立つ仕事がしたい」という思いが強く、身体の不調を根本から改善できる東洋医学に魅力を感じ、この道を志しました。専門学校卒業後は、都内の鍼灸院や整形外科で10年以上の臨床経験を積み、幅広い症状の患者さまを担当してきました。</p>
+
+        <p>特に、慢性的な肩こり・腰痛、自律神経の乱れ、ストレスによる不調など、現代社会で増えている症状に対して、鍼灸の効果を実感していただけるよう努めています。「痛みを取るだけでなく、心まで軽くなる施術」を大切にしています。</p>
+
+        <p>○○鍼灸院では、患者さまの生活背景や体質を丁寧に伺い、その方にとって最適な施術プランをご提案します。初めての方でも安心していただけるよう、わかりやすい説明と、リラックスできる空間づくりを心がけています。</p>
+    </div>
+</section>
+
+<!-- ==========================
+     アクセス
+========================== -->
+<section id="access">
+    <h2>アクセス</h2>
+
+    <div class="card access-grid">
+        <div>
+            <p><strong>住所：</strong>福岡県○○市○○町1-2-3</p>
+            <p><strong>電話：</strong><a href="tel:000-0000-0000">000-0000-0000</a></p>
+
+            <h3>診療時間</h3>
+            <p>平日：9:00〜19:00</p>
+            <p>土曜：9:00〜17:00</p>
+            <p>休診日：日曜・祝日</p>
+        </div>
+
+        <div>
+            <div class="map">（ここに Google Map を埋め込めます）</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 ○○鍼灸院</p>
+</footer>
+
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileNav = document.getElementById("mobileNav");
+    const closeBtn = document.getElementById("closeBtn");
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        mobileNav.classList.toggle("open");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        mobileNav.classList.remove("open");
+    });
+
+    document.querySelectorAll(".mobile-nav a").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            mobileNav.classList.remove("open");
+        });
+    });
+</script>
+
+</body>
+</html>
