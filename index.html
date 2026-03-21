@@ -1,464 +1,1068 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>○○鍼灸院</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 背景画像を先読み（読み込み遅延を防ぐ） -->
-    <link rel="preload" as="image" href="images/bg-clinic.png">
+  <!-- bg-clinic.png は使用しません。背景はCSSで生成 -->
+  <!-- SEO: タイトル・ディスクリプション -->
+  <title>つぐみの部屋 | 大阪・新大阪の鍼灸・整体サロン</title>
+  <meta name="description" content="新大阪・淀川区の鍼灸サロン「つぐみの部屋」。肩こり・腰痛・頭痛・めまい・不定愁訴など慢性的な不調に、やさしい鍼灸とふかふか整体で丁寧に対応。初めての方・強い刺激が苦手な方も安心。完全予約制・往診対応あり。">
+  <meta name="keywords" content="新大阪 鍼灸,淀川区 鍼灸,鍼灸 初めて,肩こり 鍼灸 大阪,腰痛 鍼灸 大阪,めまい 頭痛 鍼灸,ふかふか整体,往診 鍼灸 大阪,女性鍼灸師,不定愁訴 大阪,つぐみの部屋,鍼灸師 酒井つぐみ,酒井つぐみ 鍼灸,一の会,一の会鍼灸院">
+  <meta name="author" content="酒井 つぐみ">
+  <meta name="robots" content="index, follow">
 
-    <style>
-        /* ==========================
-           固定背景レイヤー（スマホでも固定される）
-        ========================== */
-        .bg-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('images/bg-clinic.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
-        }
+  <!-- OGP（SNSシェア対策） -->
+  <meta property="og:title" content="つぐみの部屋 | 大阪・新大阪の鍼灸・整体サロン">
+  <meta property="og:description" content="新大阪・淀川区の鍼灸サロン。肩こり・腰痛・めまい・不定愁訴など幅広く対応。初めての方も安心の、やさしい鍼灸とふかふか整体。完全予約制・往診対応あり。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
 
-        body {
-            margin: 0;
-            font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
-            color: #222;
-            position: relative;
-        }
+  <!-- セキュリティ -->
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no, email=no, address=no">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 
-        /* 背景の白い薄膜（世界観を維持） */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(255,255,255,0.2);
-            z-index: -1;
-        }
+  <!-- 構造化データ（SEO強化） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["MedicalBusiness", "HealthAndBeautyBusiness"],
+    "name": "つぐみの部屋",
+    "alternateName": "Tsugumi no Heya",
+    "description": "新大阪・淀川区の鍼灸サロン。肩こり・腰痛・頭痛・めまい・不定愁訴など慢性的な不調に、やさしい鍼灸とふかふか整体で丁寧に対応。初めての方も安心。完全予約制・往診対応あり。",
+    "url": "https://tsugumi-sinkyu.jp/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "西中島4-4-16 NLC新大阪6号館 6階602号室",
+      "addressLocality": "大阪市淀川区",
+      "addressRegion": "大阪府",
+      "postalCode": "532-0011",
+      "addressCountry": "JP"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.7276025,
+      "longitude": 135.4848435
+    },
+    "email": "tsugumi.harikyu@gmail.com",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    ],
+    "priceRange": "¥¥",
+    "currenciesAccepted": "JPY",
+    "paymentAccepted": "現金",
+    "areaServed": ["大阪市淀川区","大阪市","大阪府"],
+    "medicalSpecialty": "鍼灸・整体",
+    "availableService": [
+      {
+        "@type": "MedicalTherapy",
+        "name": "鍼灸治療",
+        "description": "東洋医学の視点から脈・腹部を診て、やさしく鍼やお灸を施す治療"
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "ふかふか整体",
+        "description": "のばさない・つぶさない・痛くしないやさしいタッチの整体"
+      }
+    ],
+    "employee": {
+      "@type": "Person",
+      "name": "酒井 つぐみ",
+      "jobTitle": "鍼灸師",
+      "description": "鍼灸師・酒井つぐみ。国際医療系NPOでのインターン経験を経て、一の会鍼灸院（師匠：一の会）で内科系疾患も含む幅広い鍼灸を学ぶ。大阪・新大阪を拠点に活動。"
+    },
+    "sameAs": [
+      "https://www.instagram.com/tsugumi1997/",
+      "https://ourl.jp/o1mme",
+      "https://ichinokai.info/"
+    ]
+  }
+  </script>
 
-        /* ==========================
-           ヘッダー（PC 左寄せ）
-        ========================== */
-        header {
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(4px);
-            padding: 15px 20px 10px;
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
 
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
+  <!-- canonical -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="canonical" href="https://tsugumi-sinkyu.jp/">
 
-        header h1 {
-            margin: 0;
-            font-size: 30px;
-            font-weight: bold;
-            color: #222;
-            letter-spacing: 2px;
-        }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="つぐみの部屋 | 大阪・新大阪の鍼灸・整体サロン">
+  <meta name="twitter:description" content="新大阪・淀川区の鍼灸サロン。肩こり・腰痛・めまい・不定愁訴など幅広く対応。初めての方も安心の、やさしい鍼灸とふかふか整体。完全予約制・往診対応あり。">
 
-        nav {
-            margin-top: 10px;
-            display: flex;
-            gap: 30px;
-        }
+  <!-- OGP補強 -->
+  <meta property="og:site_name" content="つぐみの部屋">
+  <meta property="og:url" content="https://tsugumi-sinkyu.jp/">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 
-        nav a {
-            color: #222;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 300;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 4px;
-        }
 
-        nav a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0%;
-            height: 2px;
-            background: #222;
-            transition: 0.3s;
-        }
+  <style>
+    /* ===== CSS変数 ===== */
+    :root {
+      --terracotta: #B5604A;
+      --terracotta-light: #D4846C;
+      --terracotta-pale: #f5e8e4;
+      --ink: #2a1f1a;
+      --ink-soft: #4a3b35;
+      --cream: #faf6f3;
+      --white: #ffffff;
+      --border: rgba(181,96,74,0.18);
+      --shadow: 0 4px 24px rgba(42,31,26,0.10);
+      --font-serif: 'Shippori Mincho', serif;
+      --font-sans: 'Noto Sans JP', sans-serif;
+      --radius: 12px;
+      --header-h: 72px;
+    }
 
-        nav a:hover::after {
-            width: 100%;
-        }
+    /* ===== リセット ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-        /* ==========================
-           ハンバーガー（スマホ）
-        ========================== */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 20px;
-        }
+    body {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      color: var(--ink);
+      background: #fdf9f6;
+      line-height: 1.85;
+      -webkit-text-size-adjust: 100%;
+    }
 
-        .hamburger span {
-            width: 26px;
-            height: 3px;
-            background: #222;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
+    a { color: var(--terracotta); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.72; }
+    img { max-width: 100%; height: auto; display: block; }
 
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+    /* ===== 背景テクスチャ ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(181,96,74,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(181,96,74,0.04) 0%, transparent 50%);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-        /* ==========================
-           スマホ用メニュー
-        ========================== */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
+    /* ===== ヘッダー ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-h);
+      background: rgba(250,246,243,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
 
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-            backdrop-filter: blur(6px);
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 3px;
+      flex-shrink: 0;
+    }
 
-            z-index: 9999;
-            padding-top: 80px;
-            overflow-y: auto;
-        }
+    .logo span {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--terracotta);
+      margin-top: 2px;
+    }
 
-        .mobile-nav.open {
-            display: flex;
-        }
+    nav {
+      display: flex;
+      gap: 32px;
+    }
 
-        .mobile-nav a {
-            padding: 12px 0;
-            font-size: 20px;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
+    nav a {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--ink-soft);
+      position: relative;
+      padding-bottom: 3px;
+    }
 
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 32px;
-            color: white;
-            cursor: pointer;
-        }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 0; height: 1px;
+      background: var(--terracotta);
+      transition: width 0.3s ease;
+    }
+    nav a:hover { opacity: 1; color: var(--terracotta); }
+    nav a:hover::after { width: 100%; }
 
-        @media (max-width: 700px) {
-            nav {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            header {
-                align-items: flex-start;
-            }
-        }
+    /* ===== ハンバーガー ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        /* ==========================
-           ヒーロー
-        ========================== */
-        .hero {
-            height: 45vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #222;
-            position: relative;
-            opacity: 0;
-            animation: heroFade 1.5s ease-out forwards;
-        }
+    /* ===== モバイルメニュー ===== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(42,31,26,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .mobile-nav.open { display: flex; }
 
-        @keyframes heroFade {
-            to { opacity: 1; }
-        }
+    .mobile-nav a {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--cream);
+      letter-spacing: 3px;
+      padding: 12px 40px;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--terracotta-light); opacity: 1; }
 
-        .hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 70%);
-            animation: glowMove 12s infinite alternate ease-in-out;
-            z-index: 1;
-        }
+    .close-btn {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-size: 28px;
+      color: var(--cream);
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+    }
 
-        @keyframes glowMove {
-            0% { transform: translate(-10%, -10%); }
-            100% { transform: translate(10%, 10%); }
-        }
+    /* ===== ヒーロー ===== */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #fdf8f4 0%, #f9f3ec 35%, #f4ede4 70%, #f0e8de 100%);
+    }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(255,255,255,0.45);
-            backdrop-filter: blur(2px);
-            z-index: 0;
-        }
+    /* 装飾円 */
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,96,74,0.10) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,96,74,0.07) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+      animation: pulse 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.15); }
+    }
 
-        .hero-text {
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1.2s ease-out forwards;
-            animation-delay: 0.3s;
-        }
+    /* 縦線の装飾 */
+    .hero-deco {
+      position: absolute;
+      top: 60px; bottom: 60px;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border) 30%, var(--border) 70%, transparent);
+      transform: translateX(-50%);
+      display: none;
+    }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 80px 24px;
+      max-width: 680px;
+    }
 
-        .hero-text h2 {
-            font-size: 28px;
-            margin-bottom: 14px;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-        }
 
-        .hero-text h2::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: #222;
-            opacity: 0.6;
-        }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.5;
+      color: var(--ink);
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.5s;
+    }
 
-        /* ==========================
-           セクション
-        ========================== */
-        section {
-            padding: 50px 20px;
-            max-width: 900px;
-            margin: auto;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            scroll-margin-top: 120px;
-        }
+    .hero-lead {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
 
-        @media (max-width: 700px) {
-            section {
-                padding: 35px 20px 20px;
-            }
-        }
+    .hero-divider {
+      width: 48px; height: 1px;
+      background: var(--terracotta);
+      margin: 28px auto;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.0s;
+    }
 
-        h2 {
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(0,0,0,0.2);
-            padding-bottom: 6px;
-            margin-bottom: 25px;
-            color: #222;
-        }
+    .hero-illust {
+      margin-top: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.2s;
+    }
 
-        .card {
-            background: rgba(255,255,255,0.55);
-            padding: 25px;
-            border-radius: 12px;
-            backdrop-filter: blur(3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-            background-size: cover;
-            background-blend-mode: lighten;
-        }
+    .hero-illust img {
+      width: 200px;
+      height: auto;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 24px rgba(181,96,74,0.15));
+    }
 
-        .access-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        @media (max-width: 700px) {
-            .access-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    /* ===== レイアウト ===== */
+    main { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 
-        .map {
-            width: 100%;
-            height: 40vh;
-            background: #ccc;
-            border-radius: 8px;
-        }
+    /* ===== セクション共通 ===== */
+    .section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: calc(var(--header-h) + 24px);
+    }
+    .section:last-child { border-bottom: none; }
 
-        @media (max-width: 700px) {
-            .map {
-                height: 18vh;
-            }
-        }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
 
-        footer {
-            background: rgba(0,0,0,0.8);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-    </style>
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 2px;
+    }
+
+    .section-en {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--terracotta);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    /* ===== カード ===== */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== ホーム ===== */
+    .home-text p {
+      margin-bottom: 20px;
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+    .home-text p:last-child { margin-bottom: 0; }
+
+    .highlight-box {
+      background: var(--terracotta-pale);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 28px 0;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    /* ===== メニュー ===== */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .menu-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(42,31,26,0.13);
+    }
+
+    .menu-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .menu-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .menu-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    .menu-note {
+      font-size: 12px;
+      color: var(--terracotta);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* ===== 料金 ===== */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .price-table th, .price-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .price-table th {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--terracotta-pale);
+      width: 60%;
+    }
+    .price-table td {
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+    .price-table tr:last-child th,
+    .price-table tr:last-child td {
+      border-bottom: none;
+    }
+    .price-badge {
+      display: inline-block;
+      font-size: 11px;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-left: 10px;
+      vertical-align: middle;
+      font-family: var(--font-sans);
+      font-weight: 400;
+    }
+    .price-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #888;
+      text-align: right;
+    }
+
+    /* ===== プロフィール ===== */
+    .profile-wrap {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .profile-image {
+      text-align: center;
+    }
+
+    .profile-image img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: var(--terracotta-pale);
+      padding: 12px;
+      margin: 0 auto 12px;
+    }
+
+    .profile-name {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ink);
+    }
+
+    .profile-cert {
+      font-size: 12px;
+      color: var(--terracotta);
+      margin-top: 4px;
+    }
+
+    .profile-body p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      line-height: 2;
+    }
+    .profile-body p:last-child { margin-bottom: 0; }
+
+    /* ===== アクセス ===== */
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .access-info dt {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--terracotta);
+      letter-spacing: 1px;
+      margin-top: 20px;
+      margin-bottom: 6px;
+    }
+    .access-info dt:first-child { margin-top: 0; }
+
+    .access-info dd {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      margin-left: 0;
+    }
+
+    .access-info dd a {
+      word-break: break-all;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .hours-table td {
+      padding: 6px 0;
+      font-size: 13px;
+      color: var(--ink-soft);
+      border-bottom: 1px dashed var(--border);
+    }
+    .hours-table td:last-child { text-align: right; }
+    .hours-table tr:last-child td { border-bottom: none; }
+
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      height: 100%;
+      min-height: 300px;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: none;
+      display: block;
+    }
+
+    .sns-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .sns-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      background: #fdf9f6;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .sns-link:hover {
+      background: var(--terracotta-pale);
+      color: var(--terracotta);
+      opacity: 1;
+    }
+
+    /* ===== 予約CTAボタン ===== */
+    .cta-section {
+      text-align: center;
+      padding: 72px 24px;
+      background: linear-gradient(135deg, var(--terracotta-pale) 0%, #faf6f3 100%);
+      border-radius: var(--radius);
+      margin: 48px 0;
+    }
+    .cta-section h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-serif);
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: var(--white);
+      background: var(--terracotta);
+      border-radius: 30px;
+      padding: 14px 40px;
+      transition: background 0.25s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(181,96,74,0.30);
+    }
+    .btn:hover {
+      background: var(--terracotta-light);
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    footer strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    /* ===== スクロールアニメーション ===== */
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    /* JS読み込み後にアニメーション準備 */
+    .js-loaded .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .js-loaded .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-illust img { width: 150px; }
+
+      main { padding: 0 16px; }
+      .section { padding: 48px 0; }
+
+      .card { padding: 24px 20px; }
+
+      .menu-grid { grid-template-columns: 1fr; }
+
+      .profile-wrap { grid-template-columns: 1fr; text-align: center; }
+      .profile-image img { width: 140px; height: 140px; }
+
+      .access-grid { grid-template-columns: 1fr; }
+      .map-wrap { min-height: 240px; }
+      .map-wrap iframe { min-height: 240px; }
+
+      .cta-section { padding: 48px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .logo { font-size: 18px; }
+      .section-title { font-size: 20px; }
+      .hero-inner { padding: 60px 16px; }
+      .hero-illust img { width: 120px; }
+      .card { padding: 20px 16px; }
+      .price-table th, .price-table td { padding: 12px 10px; font-size: 13px; }
+      .price-badge { display: block; margin: 4px 0 0 0; font-size: 10px; }
+      .btn { padding: 12px 28px; font-size: 14px; }
+      .cta-section h2 { font-size: 20px; }
+      .sns-links { gap: 8px; }
+      .sns-link { font-size: 11px; padding: 5px 10px; }
+      .section-en { display: none; }
+      .hours-table td { font-size: 12px; }
+      .profile-name { font-size: 15px; }
+      .menu-name { font-size: 16px; }
+    }
+
+    /* タッチデバイス向け：ホバー効果を無効化してタップ体験を改善 */
+    @media (hover: none) {
+      .menu-item:hover { transform: none; box-shadow: var(--shadow); }
+      .btn:hover { transform: none; }
+      nav a:hover::after { width: 0; }
+    }
+
+    /* 横向きスマホ対応 */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero { min-height: 50vh; }
+      .hero-inner { padding: 40px 24px; }
+    }
+
+    /* 印刷対応 */
+    @media print {
+      header, .hamburger, .mobile-nav, .cta-section, .btn, .hero::before, .hero::after { display: none !important; }
+      body { background: white; color: black; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+      .map-wrap { display: none; }
+      .access-grid { grid-template-columns: 1fr; }
+      a[href]::after { content: " (" attr(href) ")"; font-size: 11px; color: #666; }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- 固定背景レイヤー -->
-    <div class="bg-fixed"></div>
-
+<!-- ===== ヘッダー ===== -->
 <header>
-    <h1>○○鍼灸院</h1>
+  <div class="logo">
+    つぐみの部屋
+    <span>TSUGUMI NO HEYA</span>
+  </div>
 
-    <nav>
-        <a href="#home">ホーム</a>
-        <a href="#menu">メニュー</a>
-        <a href="#price">料金</a>
-        <a href="#profile">プロフィール</a>
-        <a href="#access">アクセス</a>
-    </nav>
-
-    <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-    </div>
-</header>
-
-<div class="mobile-nav" id="mobileNav">
-    <div class="close-btn" id="closeBtn">×</div>
-
+  <nav aria-label="メインナビゲーション">
     <a href="#home">ホーム</a>
     <a href="#menu">メニュー</a>
     <a href="#price">料金</a>
     <a href="#profile">プロフィール</a>
     <a href="#access">アクセス</a>
-</div>
+  </nav>
 
-<section class="hero">
-    <div class="hero-text">
-        <h2>心と身体を整える、やさしい鍼灸</h2>
-        <p>慢性的な不調から日々の疲れまで、あなたに寄り添う治療院です。</p>
+  <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ===== モバイルメニュー ===== -->
+<nav class="mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
+  <button class="close-btn" id="closeBtn" aria-label="メニューを閉じる">✕</button>
+  <a href="#home">ホーム</a>
+  <a href="#menu">メニュー</a>
+  <a href="#price">料金</a>
+  <a href="#profile">プロフィール</a>
+  <a href="#access">アクセス</a>
+</nav>
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero" aria-label="キービジュアル">
+  <div class="hero-inner">
+    <h1 class="hero-title">心と体をゆるめる、<br>やさしいひととき</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-lead">施術や関わりを通して、心と体をゆるめ、<br>本来のご機嫌な自分でいられるようなお手伝いができれば嬉しいです。</p>
+    <div class="hero-illust">
+      <img src="images/S__14286859.jpg" alt="つぐみの部屋 施術者イラスト" width="200" height="200">
     </div>
-</section>
-<br>
-<section id="home" class="card">
-    <h2>ホーム</h2>
-    <div>
-        <p>○○鍼灸院は、地域の皆さまの健康と日々の生活を支えるために生まれた治療院です。肩こり・腰痛・頭痛・自律神経の乱れ・冷え性・不眠など、現代人が抱えやすい不調に対して、一人ひとりの体質や生活習慣に合わせた丁寧な施術を行っています。</p>
-
-        <p>当院では、痛みの原因を根本から見つめ、身体のバランスを整えることを大切にしています。「なんとなく調子が悪い」「病院では異常がないと言われたけれどつらい」など、小さなお悩みでもお気軽にご相談ください。</p>
-
-        <p>初めての方でも安心して受けていただけるよう、カウンセリングを丁寧に行い、施術内容やお身体の状態をわかりやすく説明いたします。心と身体がふっと軽くなるような、落ち着いた空間でお待ちしております。</p>
-    </div>
-</section>
-
-<section id="menu" class="card">
-    <h2>メニュー</h2>
-    <div>
-        <ul>
-            <li>鍼灸治療（全身）</li>
-            <li>部分治療（肩・腰など）</li>
-            <li>美容鍼</li>
-            <li>お灸治療</li>
-        </ul>
-    </div>
+  </div>
 </section>
 
-<section id="price" class="card">
-    <h2>料金</h2>
-    <div>
-        <p>初診料：3,000円</p>
-        <p>鍼灸治療：5,000円〜</p>
-        <p>美容鍼：6,000円〜</p>
+<!-- ===== メインコンテンツ ===== -->
+<main>
+
+  <!-- ホーム -->
+  <section id="home" class="section fade-in">
+    <div class="section-header">
+      <h2 class="section-title">ごあいさつ</h2>
+      <span class="section-en">About</span>
     </div>
-</section>
+    <div class="card home-text">
+      <p>時間をかけてお話をうかがいながら、脈やお腹、背中の状態を丁寧に診ていきます。<br>お一人おひとりの身体の声に耳を傾け、不調の原因を一緒に探していきます。</p>
 
-<section id="profile" class="card">
-    <h2>プロフィール</h2>
-    <div>
-        <p>院長：山田 太郎　国家資格：はり師・きゅう師</p>
+      <div class="highlight-box">
+        初めての方でも安心して受けていただけるよう、カウンセリングを丁寧に行い、施術内容やお身体の状態をわかりやすく説明いたします。心と身体がふっと軽くなるような、落ち着いた空間でお待ちしております。
+      </div>
 
-        <p>学生時代から「人の役に立つ仕事がしたい」という思いが強く、身体の不調を根本から改善できる東洋医学に魅力を感じ、この道を志しました。専門学校卒業後は、都内の鍼灸院や整形外科で10年以上の臨床経験を積み、幅広い症状の患者さまを担当してきました。</p>
+      <p>そのうえで、できるだけ少ないツボを使い、無理のないやさしい施術で整えていきます。強い刺激が苦手な方や、はじめての方にも安心して受けていただけます。</p>
 
-        <p>特に、慢性的な肩こり・腰痛、自律神経の乱れ、ストレスによる不調など、現代社会で増えている症状に対して、鍼灸の効果を実感していただけるよう努めています。「痛みを取るだけでなく、心まで軽くなる施術」を大切にしています。</p>
+      <p>さまざまな症状があっても、不調の根っこはひとつと考えています。肩こりや腰痛はもちろん、めまいや頭痛、なんとなく調子がすぐれないといった不定愁訴まで、幅広く対応しています。慢性的な不調にお悩みの方や、原因がわからず不安な方も、どうぞお気軽にご相談ください。</p>
 
-        <p>○○鍼灸院では、患者さまの生活背景や体質を丁寧に伺い、その方にとって最適な施術プランをご提案します。初めての方でも安心していただけるよう、わかりやすい説明と、リラックスできる空間づくりを心がけています。</p>
+      <p>身体がゆるやかに整っていくと、心もふっと軽くなっていきます。そんな、ほっと安心できるような治療を大切にしています。</p>
+
+      <p>「これくらいで行っていいのかな」と迷われている方も、どうぞご安心ください。小さな不調のうちから整えていくことで、より楽な状態へとつながっていきます。</p>
+
+      <p>まずは一度、お身体の状態をみさせてください。ご予約・ご相談をお待ちしております。</p>
     </div>
-</section>
+  </section>
 
-<section id="access" class="card">
-    <h2>アクセス</h2>
+  <!-- メニュー -->
+  <section id="menu" class="section fade-in">
+    <div class="section-header">
+      <h2 class="section-title">メニュー</h2>
+      <span class="section-en">Menu</span>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-icon">🌿</div>
+        <div class="menu-name">鍼灸治療</div>
+        <p class="menu-desc">東洋医学の視点から、脈や腹部の状態を丁寧に診て、少数のツボにやさしく鍼やお灸を施します。内科系の不調から、肩こり・腰痛まで幅広く対応しています。</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon">🌸</div>
+        <div class="menu-name">ふかふか整体</div>
+        <p class="menu-desc">のばさない、つぶさない、痛くしない。やさしいタッチで筋肉・関節の緊張をほぐす整体です。施術後は体が軽くなり、心もゆるやかに落ち着いていきます。</p>
+        <p class="menu-note">※強い刺激が苦手な方に特におすすめです</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- 料金 -->
+  <section id="price" class="section fade-in">
+    <div class="section-header">
+      <h2 class="section-title">料金</h2>
+      <span class="section-en">Price</span>
+    </div>
+    <div class="card">
+      <table class="price-table" aria-label="料金表">
+        <tbody>
+          <tr>
+            <th scope="row">鍼灸初診料<span class="price-badge">初回のみ</span></th>
+            <td>2,000円</td>
+          </tr>
+          <tr>
+            <th scope="row">鍼灸治療</th>
+            <td>6,000円</td>
+          </tr>
+          <tr>
+            <th scope="row">ふかふか整体（30分〜）</th>
+            <td>3,000円〜</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="price-note">※往診の場合は別途交通費が発生します</p>
+    </div>
+  </section>
+
+  <!-- プロフィール -->
+  <section id="profile" class="section fade-in">
+    <div class="section-header">
+      <h2 class="section-title">プロフィール</h2>
+      <span class="section-en">Profile</span>
+    </div>
+    <div class="card">
+      <div class="profile-wrap">
+        <div class="profile-image">
+          <img src="images/S__14286859.jpg" alt="酒井 つぐみ（施術者）のイラスト" width="180" height="180">
+          <p class="profile-name">酒井 つぐみ</p>
+          <p class="profile-cert">鍼灸師</p>
+        </div>
+        <div class="profile-body">
+          <p>大学生時代にカンボジアで活動する国際医療系NPOで1年間インターンとして活動しました。</p>
+          <p>常に生死が隣り合う環境の中で、医療としての鍼灸に深く興味を持つようになりました。</p>
+          <p>2022年に鍼灸学校に入学し、一の会鍼灸院の師匠との出会いを通じて、肩こり・腰痛だけではなく、内科系疾患も含めた幅広い鍼灸を学んでいます。</p>
+          <p>現在は畑や田んぼを借りて農業も実践しながら、将来的には農や食も含めた「健康」のあり方を模索しています。人々がご機嫌に生きられる医療の形を、これからも追い続けていきます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section id="access" class="section fade-in">
+    <div class="section-header">
+      <h2 class="section-title">アクセス</h2>
+      <span class="section-en">Access</span>
+    </div>
     <div class="access-grid">
-        <div>
-            <p><strong>住所：</strong>福岡県○○市○○町1-2-3</p>
-            <p><strong>電話：</strong><a href="tel:000-0000-0000">000-0000-0000</a></p>
+      <div>
+        <dl class="access-info">
+          <dt>住所</dt>
+          <dd>
+            〒532-0011<br>
+            大阪市淀川区西中島4-4-16<br>
+            NLC新大阪6号館 6階602号室<br>
+            <small>※大阪近辺への往診も対応可能（別途交通費）</small>
+            <br><small>【最寄り駅】JR新大阪駅・地下鉄新大阪駅より徒歩圏内</small>
+          </dd>
 
-            <h3>診療時間</h3>
-            <p>平日：9:00〜19:00</p>
-            <p>土曜：9:00〜17:00</p>
-            <p>休診日：日曜・祝日</p>
-        </div>
+          <dt>診療時間</dt>
+          <dd>
+            <table class="hours-table">
+              <tr><td>受付開始</td><td>10:00〜</td></tr>
+              <tr><td>休診</td><td>不定休</td></tr>
+              <tr><td>予約</td><td>完全予約制</td></tr>
+            </table>
+            <small>※終了時間は日によって異なります</small>
+          </dd>
 
-        <div>
-            <div class="map">（ここに Google Map を埋め込めます）</div>
-        </div>
+          <dt>お問い合わせ</dt>
+          <dd>
+            <div class="sns-links">
+              <a href="https://forms.gle/6RzGwqsBqjK3hWh2A" class="sns-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg> 予約フォーム
+              </a>
+              <a href="mailto:tsugumi.harikyu@gmail.com" class="sns-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg> メール
+              </a>
+              <a href="https://www.instagram.com/tsugumi1997/" class="sns-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram
+              </a>
+              <a href="https://ourl.jp/o1mme" class="sns-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook
+              </a>
+              <a href="https://ichinokai.info/" class="sns-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> 一の会鍼灸院
+              </a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26232.88605369893!2d135.4848435!3d34.7276025!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e43ab86af011%3A0xe1fad63864b163df!2z5LiA44Gu5Lya6Y2854G46Zmi!5e0!3m2!1sja!2sjp!4v1773932823851!5m2!1sja!2sjp"
+          title="つぐみの部屋 地図 - 大阪市淀川区西中島"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Googleマップ">
+        </iframe>
+      </div>
     </div>
-</section>
+  </section>
 
+  <!-- CTA -->
+  <div class="cta-section fade-in">
+    <h2>新大阪の鍼灸サロン｜ご予約・ご相談はお気軽に</h2>
+    <p>まずは一度、お身体の状態をみさせてください。<br>小さな不調のうちから、ぜひご相談ください。</p>
+    <a href="https://forms.gle/6RzGwqsBqjK3hWh2A" class="btn" target="_blank" rel="noopener noreferrer">予約フォームへ</a>
+  </div>
+
+</main>
+
+<!-- ===== フッター ===== -->
 <footer>
-    <p>© 2025 ○○鍼灸院</p>
+  <strong>つぐみの部屋</strong>
+  <p>© 2026 Tsugumi no Heya. All rights reserved.</p>
 </footer>
 
+<!-- ===== JavaScript ===== -->
 <script>
-    const hamburger = document.getElementById("hamburger");
-    const mobileNav = document.getElementById("mobileNav");
-    const closeBtn = document.getElementById("closeBtn");
+  'use strict';
 
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        mobileNav.classList.toggle("open");
-    });
+  // JS読み込み確認（アニメーション制御用）
+  document.body.classList.add('js-loaded');
 
-    closeBtn.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        mobileNav.classList.remove("open");
-    });
+  // ハンバーガーメニュー
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const closeBtn = document.getElementById('closeBtn');
 
-    document.querySelectorAll(".mobile-nav a").forEach(link => {
-        link.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            mobileNav.classList.remove("open");
-        });
-    });
-</script>
+  function openMenu() {
+    hamburger.classList.add('active');
+    hamburger.setAttribute('aria-expanded', 'true');
+    mobileNav.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-</body>
-</html>
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  closeBtn.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-nav a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // ESCキーでメニューを閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // スクロールアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.t
