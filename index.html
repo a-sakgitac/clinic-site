@@ -45,7 +45,7 @@
       "latitude": 34.7276025,
       "longitude": 135.4848435
     },
-    "email": "tsugumi.harikyu@gmail.com",
+    "email": "tsugumi.harikyu[at]gmail.com",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -991,7 +991,7 @@
               <a href="https://forms.gle/6RzGwqsBqjK3hWh2A" class="sns-link" target="_blank" rel="noopener noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg> 予約フォーム
               </a>
-              <a href="/cdn-cgi/l/email-protection#d8acabadbfadb5b1f6b0b9aab1b3a1ad98bfb5b9b1b4f6bbb7b5" class="sns-link">
+              <a href="#" id="mail-link" class="sns-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg> メール
               </a>
               <a href="https://www.instagram.com/tsugumi1997/" class="sns-link" target="_blank" rel="noopener noreferrer">
@@ -1037,13 +1037,21 @@
 </footer>
 
 <!-- ===== JavaScript ===== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   'use strict';
 
   // JS読み込み確認（アニメーション制御用）
   document.body.classList.add('js-loaded');
 
   document.addEventListener('DOMContentLoaded', function() {
+    // メールアドレスをJSで動的生成（Cloudflareの難読化を回避）
+    var u = 'tsugumi.harikyu';
+    var d = 'gmail.com';
+    var mailLink = document.getElementById('mail-link');
+    if (mailLink) {
+      mailLink.href = 'mailto:' + u + '@' + d;
+    }
+
     var hamburger = document.getElementById('hamburger');
     var mobileNav = document.getElementById('mobileNav');
     var closeBtn  = document.getElementById('closeBtn');
@@ -1095,4 +1103,12 @@
     });
 
     setTimeout(function() {
-      fadeEls.forEach(function(el) { 
+      fadeEls.forEach(function(el) { el.classList.add('visible'); });
+    }, 3000);
+  } else {
+    fadeEls.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+</script>
+</body>
+</html>
