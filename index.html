@@ -98,6 +98,11 @@
   <!-- OGP補強 -->
   <meta property="og:site_name" content="つぐみの部屋">
   <meta property="og:url" content="https://tsugumi-sinkyu.jp/">
+  <!-- ファビコン（各機種対応） -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23B5604A'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='serif' font-size='65' font-weight='700' fill='white'%3E%E3%81%A4%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23B5604A'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='serif' font-size='65' font-weight='700' fill='white'%3E%E3%81%A4%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#B5604A">
+  <meta name="msapplication-TileColor" content="#B5604A">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -361,13 +366,21 @@
       margin-top: 40px;
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 1.2s;
+      display: flex;
+      justify-content: center;
     }
 
     .hero-illust img {
-      width: 200px;
-      height: auto;
+      width: 260px;
+      height: 260px;
+      object-fit: contain;
+      object-position: center 45%;
+      background: var(--terracotta-pale);
+      display: block;
       margin: 0 auto;
+      border-radius: 50%;
       filter: drop-shadow(0 8px 24px rgba(181,96,74,0.15));
+      padding: 10px;
     }
 
     @keyframes fadeUp {
@@ -736,7 +749,7 @@
       nav { display: none; }
       .hamburger { display: flex; }
 
-      .hero-illust img { width: 150px; }
+      .hero-illust img { width: 180px; height: 180px; object-fit: contain; padding: 8px; border-radius: 50%; }
 
       main { padding: 0 16px; }
       .section { padding: 48px 0; }
@@ -759,7 +772,7 @@
       .logo { font-size: 18px; }
       .section-title { font-size: 20px; }
       .hero-inner { padding: 60px 16px; }
-      .hero-illust img { width: 120px; }
+      .hero-illust img { width: 150px; height: 150px; object-fit: contain; padding: 6px; border-radius: 50%; }
       .card { padding: 20px 16px; }
       .price-table th, .price-table td { padding: 12px 10px; font-size: 13px; }
       .price-badge { display: block; margin: 4px 0 0 0; font-size: 10px; }
@@ -975,7 +988,7 @@
               <a href="https://forms.gle/6RzGwqsBqjK3hWh2A" class="sns-link" target="_blank" rel="noopener noreferrer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg> 予約フォーム
               </a>
-              <a href="mailto:tsugumi.harikyu@gmail.com" class="sns-link">
+              <a href="/cdn-cgi/l/email-protection#d8acabadbfadb5b1f6b0b9aab1b3a1ad98bfb5b9b1b4f6bbb7b5" class="sns-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg> メール
               </a>
               <a href="https://www.instagram.com/tsugumi1997/" class="sns-link" target="_blank" rel="noopener noreferrer">
@@ -1021,7 +1034,7 @@
 </footer>
 
 <!-- ===== JavaScript ===== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   'use strict';
 
   // JS読み込み確認（アニメーション制御用）
@@ -1079,12 +1092,4 @@
     });
 
     setTimeout(function() {
-      fadeEls.forEach(function(el) { el.classList.add('visible'); });
-    }, 3000);
-  } else {
-    fadeEls.forEach(function(el) { el.classList.add('visible'); });
-  }
-
-</script>
-</body>
-</html>
+      fadeEls.forEach(function(el) { 
